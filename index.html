@@ -20,6 +20,7 @@
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
     </form>
+<!-- SOCKET IO CLIENT!!!!   -->
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
@@ -32,11 +33,13 @@
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (input.value) {
+          // send EVENT with `chat message` tyoe via socket-io.client
           socket.emit('chat message', input.value);
           input.value = '';
         }
       });
 
+      //LISTEN SOCKET - when EVENT with`chat  message` is received, then do following
       socket.on('chat message', function(msg) {
         var item = document.createElement('li');
         item.textContent = msg;
